@@ -18,7 +18,7 @@ This is a Django-based web application for hosting and participating in quizzes 
 
 1. **Clone the repository**
    ```bash
-   git clone <your_repo_url>
+   git clone https://github.com/meeraahir/Quiz-Event-Application
    cd "Quiz Event Application"
    ```
 
