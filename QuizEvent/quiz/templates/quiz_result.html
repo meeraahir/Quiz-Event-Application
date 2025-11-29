@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="max-w-2xl mx-auto py-12">
+    <h1 class="text-3xl font-bold text-green-600 mb-4">Quiz Completed!</h1>
+
+    <p class="text-lg mb-4">Your Score:
+        <span class="font-bold">{{ submission.score }}</span>
+        / {{ submission.quiz.questions.count }}
+    </p>
+
+    <a href="{% url 'quiz_list' %}"
+       class="bg-indigo-600 text-white px-4 py-2 rounded">Back to Quizzes</a>
+</div>
+
+{% endblock %}

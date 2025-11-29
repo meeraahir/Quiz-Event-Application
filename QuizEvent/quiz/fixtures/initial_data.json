@@ -1,0 +1,681 @@
+[
+    {
+        "model": "quiz.event",
+        "pk": 1,
+        "fields": {
+            "title": "Science Fair",
+            "description": "Annual science exhibition for students.",
+            "date": "2025-12-10",
+            "location": "City Hall"
+        }
+    },
+    {
+        "model": "quiz.event",
+        "pk": 2,
+        "fields": {
+            "title": "Math Olympiad",
+            "description": "Regional level math competition.",
+            "date": "2025-12-15",
+            "location": "Community Center"
+        }
+    },
+    {
+        "model": "quiz.event",
+        "pk": 3,
+        "fields": {
+            "title": "Art Contest",
+            "description": "Local art contest for high school students.",
+            "date": "2025-12-20",
+            "location": "Art Gallery"
+        }
+    },
+    {
+        "model": "quiz.event",
+        "pk": 4,
+        "fields": {
+            "title": "Tech Meetup",
+            "description": "Monthly tech community meetup.",
+            "date": "2025-12-25",
+            "location": "Tech Hub"
+        }
+    },
+    {
+        "model": "quiz.event",
+        "pk": 5,
+        "fields": {
+            "title": "Music Festival",
+            "description": "Annual music festival for local bands.",
+            "date": "2025-12-30",
+            "location": "Open Grounds"
+        }
+    },
+    {
+        "model": "quiz.quiz",
+        "pk": 1,
+        "fields": {
+            "title": "General Knowledge Quiz",
+            "description": "A quiz to test general knowledge.",
+            "created_at": "2025-11-29T00:00:00Z",
+            "updated_at": "2025-11-29T00:00:00Z"
+
+        }
+    },
+    {
+        "model": "quiz.quiz",
+        "pk": 2,
+        "fields": {
+            "title": "Science Quiz",
+            "description": "A quiz about basic science topics.",
+            "created_at": "2025-11-29T00:00:00Z",
+            "updated_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.quiz",
+        "pk": 3,
+        "fields": {
+            "title": "Math Quiz",
+            "description": "Test your math skills.",
+            "created_at": "2025-11-29T00:00:00Z",
+            "updated_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.quiz",
+        "pk": 4,
+        "fields": {
+            "title": "History Quiz",
+            "description": "A quiz on world history.",
+            "created_at": "2025-11-29T00:00:00Z",
+            "updated_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.quiz",
+        "pk": 5,
+        "fields": {
+            "title": "Geography Quiz",
+            "description": "A quiz about countries and capitals.",
+            "created_at": "2025-11-29T00:00:00Z",
+            "updated_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 1,
+        "fields": {
+            "quiz": 1,
+            "text": "What is the capital of France?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 2,
+        "fields": {
+            "quiz": 1,
+            "text": "Who wrote 'Hamlet'?",
+            "question_type": "MCQ",
+          "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 3,
+        "fields": {
+            "quiz": 2,
+            "text": "What planet is known as the Red Planet?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 4,
+        "fields": {
+            "quiz": 3,
+            "text": "Solve 5 + 7 * 2",
+            "question_type": "TEXT",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 5,
+        "fields": {
+            "quiz": 4,
+            "text": "When did World War II end?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 6,
+        "fields": {
+            "quiz": 1,
+            "text": "Which planet is closest to the Sun?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 7,
+        "fields": {
+            "quiz": 1,
+            "text": "What is the largest ocean on Earth?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 8,
+        "fields": {
+            "quiz": 1,
+            "text": "How many continents are there?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 9,
+        "fields": {
+            "quiz": 2,
+            "text": "What gas do plants absorb from the atmosphere?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 10,
+        "fields": {
+            "quiz": 2,
+            "text": "How many states of matter are there?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 11,
+        "fields": {
+            "quiz": 2,
+            "text": "What is the chemical symbol for water?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 12,
+        "fields": {
+            "quiz": 3,
+            "text": "What is the square root of 16?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 13,
+        "fields": {
+            "quiz": 3,
+            "text": "What is 10 divided by 2?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 14,
+        "fields": {
+            "quiz": 3,
+            "text": "What geometric shape is a basketball?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 15,
+        "fields": {
+            "quiz": 4,
+            "text": "Who was the first President of the United States?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 16,
+        "fields": {
+            "quiz": 4,
+            "text": "In which year did the Titanic sink?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 17,
+        "fields": {
+            "quiz": 4,
+            "text": "Who discovered penicillin?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 18,
+        "fields": {
+            "quiz": 5,
+            "text": "Which is the largest continent?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 19,
+        "fields": {
+            "quiz": 5,
+            "text": "What is the longest river in the world?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 20,
+        "fields": {
+            "quiz": 5,
+            "text": "Which country has the most population?",
+            "question_type": "MCQ",
+            "created_at": "2025-11-29T00:00:00Z"
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 1,
+        "fields": {
+            "question": 1,
+            "text": "Paris",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 2,
+        "fields": {
+            "question": 1,
+            "text": "London",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 3,
+        "fields": {
+            "question": 2,
+            "text": "William Shakespeare",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 4,
+        "fields": {
+            "question": 2,
+            "text": "Charles Dickens",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 5,
+        "fields": {
+            "question": 3,
+            "text": "Mars",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 6,
+        "fields": {
+            "question": 3,
+            "text": "Jupiter",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 7,
+        "fields": {
+            "question": 4,
+            "text": "19",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 8,
+        "fields": {
+            "question": 4,
+            "text": "17",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 9,
+        "fields": {
+            "question": 5,
+            "text": "1945",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 10,
+        "fields": {
+            "question": 5,
+            "text": "1939",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 11,
+        "fields": {
+            "question": 6,
+            "text": "Mercury",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 12,
+        "fields": {
+            "question": 6,
+            "text": "Earth",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 13,
+        "fields": {
+            "question": 7,
+            "text": "Pacific Ocean",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 14,
+        "fields": {
+            "question": 7,
+            "text": "Indian Ocean",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 15,
+        "fields": {
+            "question": 8,
+            "text": "7",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 16,
+        "fields": {
+            "question": 8,
+            "text": "5",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 17,
+        "fields": {
+            "question": 9,
+            "text": "Carbon Dioxide",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 18,
+        "fields": {
+            "question": 9,
+            "text": "Oxygen",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 19,
+        "fields": {
+            "question": 10,
+            "text": "3",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 20,
+        "fields": {
+            "question": 10,
+            "text": "4",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 21,
+        "fields": {
+            "question": 11,
+            "text": "H2O",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 22,
+        "fields": {
+            "question": 11,
+            "text": "CO2",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 23,
+        "fields": {
+            "question": 12,
+            "text": "4",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 24,
+        "fields": {
+            "question": 12,
+            "text": "16",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 25,
+        "fields": {
+            "question": 13,
+            "text": "5",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 26,
+        "fields": {
+            "question": 13,
+            "text": "5",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 27,
+        "fields": {
+            "question": 14,
+            "text": "Sphere",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 28,
+        "fields": {
+            "question": 14,
+            "text": "Cube",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 29,
+        "fields": {
+            "question": 15,
+            "text": "George Washington",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 30,
+        "fields": {
+            "question": 15,
+            "text": "Thomas Jefferson",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 31,
+        "fields": {
+            "question": 16,
+            "text": "1912",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 32,
+        "fields": {
+            "question": 16,
+            "text": "1920",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 33,
+        "fields": {
+            "question": 17,
+            "text": "Alexander Fleming",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 34,
+        "fields": {
+            "question": 17,
+            "text": "Marie Curie",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 35,
+        "fields": {
+            "question": 18,
+            "text": "Asia",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 36,
+        "fields": {
+            "question": 18,
+            "text": "Africa",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 37,
+        "fields": {
+            "question": 19,
+            "text": "Nile",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 38,
+        "fields": {
+            "question": 19,
+            "text": "Amazon",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 39,
+        "fields": {
+            "question": 20,
+            "text": "China",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 40,
+        "fields": {
+            "question": 20,
+            "text": "USA",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 41,
+        "fields": {
+            "question": 13,
+            "text": "5",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.answer",
+        "pk": 42,
+        "fields": {
+            "question": 13,
+            "text": "10",
+            "is_correct": false
+        }
+    }
+]
