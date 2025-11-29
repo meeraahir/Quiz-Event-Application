@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+
+{% block title %}Upcoming Events | QuizEvents{% endblock %}
+
+{% block content %}
+
+<!-- EVENTS SECTION -->
+<section class="bg-gray-50 py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+
+        <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">
+            Upcoming <span class="text-indigo-600">Events</span>
+        </h2>
+
+        {% if events %}
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {% for event in events %}
+            <div x-data="{ open: false }" class="bg-white shadow-lg rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition">
+
+                <h3 class="text-xl font-semibold text-indigo-600">
+                    {{ event.title }}
+                </h3>
+
+                <p class="text-gray-600 mt-2">{{ event.description|truncatechars:50 }}</p>
+
+                <div class="mt-4 text-gray-700">
+                    <p><strong>Date:</strong> {{ event.date }}</p>
+                    <p><strong>Location:</strong> {{ event.location }}</p>
+                </div>
+
+                <div class="mt-6">
+                    <button @click="open = true"
+                            class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                        Know More
+                    </button>
+                </div>
+
+                <!-- Modal -->
+                <div x-show="open"
+                     x-transition
+                     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+                    <div @click.away="open = false" class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-6 relative">
+                        <button @click="open = false" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+                            &times;
+                        </button>
+
+                        <h3 class="text-2xl font-bold text-indigo-600 mb-4">{{ event.title }}</h3>
+                        <p class="text-gray-700 mb-2"><strong>Date:</strong> {{ event.date }}</p>
+                        <p class="text-gray-700 mb-2"><strong>Location:</strong> {{ event.location }}</p>
+                        <p class="text-gray-600 mt-4">{{ event.description }}</p>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+        <p class="text-center text-gray-600 text-lg mt-10">
+            No upcoming events right now.
+        </p>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- Alpine.js for modal -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+{% endblock %}

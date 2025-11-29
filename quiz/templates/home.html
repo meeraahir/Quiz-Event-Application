@@ -1,0 +1,145 @@
+{% extends 'index.html' %}
+{% block title %}Welcome | QuizEvents{% endblock %}
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white py-28 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+
+    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+      Challenge Your Mind with
+      <span class="text-yellow-300 block">Quizzes & Events</span>
+    </h1>
+
+    <p class="text-lg opacity-95 mb-10 max-w-2xl mx-auto">
+      Join interactive quizzes, explore latest events, compete with friends, and level up your knowledge — all in one platform.
+    </p>
+
+    <!-- ACTION BUTTONS -->
+    <div class="flex justify-center flex-wrap gap-4">
+
+      <!-- Explore Quizzes -->
+      <a href="{% url 'quiz_list' %}"
+         class="bg-yellow-300 text-indigo-800 px-10 py-3 text-lg font-bold rounded-xl shadow-lg hover:bg-yellow-400 transition">
+        Explore Quizzes
+      </a>
+
+      <!-- See Events -->
+      <a href="{% url 'events' %}"
+         class="bg-white text-purple-700 px-10 py-3 text-lg font-bold rounded-xl shadow-lg hover:bg-gray-100 transition">
+        See Events
+      </a>
+
+    </div>
+  </div>
+  <!-- Bottom Fade -->
+  <div class="absolute left-0 right-0 bottom-0 h-16 bg-gradient-to-t from-white/90 to-transparent"></div>
+</section>
+
+
+
+<!-- STATS SECTION -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+    <div>
+      <h3 class="text-4xl font-extrabold text-indigo-600">12K+</h3>
+      <p class="text-gray-600 font-medium">Active Users</p>
+    </div>
+    <div>
+      <h3 class="text-4xl font-extrabold text-purple-600">350+</h3>
+      <p class="text-gray-600 font-medium">Quizzes</p>
+    </div>
+    <div>
+      <h3 class="text-4xl font-extrabold text-pink-600">120+</h3>
+      <p class="text-gray-600 font-medium">Events Hosted</p>
+    </div>
+    <div>
+      <h3 class="text-4xl font-extrabold text-green-600">4.9★</h3>
+      <p class="text-gray-600 font-medium">User Rating</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FEATURES SECTION -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-14">
+      Why Choose <span class="text-indigo-600">QuizEvents?</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <div class="bg-white p-10 shadow-lg rounded-2xl hover:shadow-2xl transition text-center">
+        <div class="bg-indigo-600 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6">
+          <i class="fa-solid fa-brain text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Interactive Quizzes</h3>
+        <p class="text-gray-600">MCQs, instant results & real-time leaderboards.</p>
+      </div>
+
+      <div class="bg-white p-10 shadow-lg rounded-2xl hover:shadow-2xl transition text-center">
+        <div class="bg-purple-600 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6">
+          <i class="fa-solid fa-calendar-check text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Latest Events</h3>
+        <p class="text-gray-600">Workshops, competitions & seminars.</p>
+      </div>
+
+      <div class="bg-white p-10 shadow-lg rounded-2xl hover:shadow-2xl transition text-center">
+        <div class="bg-green-600 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6">
+          <i class="fa-solid fa-chart-line text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Instant Results</h3>
+        <p class="text-gray-600">Instant scoring & performance tracking.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- HOW IT WORKS -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-14">
+      How It <span class="text-purple-600">Works</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-10 text-center">
+
+      <div>
+        <h3 class="text-2xl font-bold text-indigo-600 mb-2">1. Sign Up</h3>
+        <p class="text-gray-600">Create an account and start exploring.</p>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-bold text-purple-600 mb-2">2. Join Quizzes</h3>
+        <p class="text-gray-600">Choose quizzes or events you like.</p>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-bold text-pink-600 mb-2">3. Compete & Grow</h3>
+        <p class="text-gray-600">Track performance & improve daily.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER CTA -->
+<section class="py-20 bg-gradient-to-br from-indigo-600 to-purple-700 text-white text-center">
+  <h2 class="text-4xl font-extrabold mb-4">Ready to Begin Your Journey?</h2>
+  <p class="text-white/90 mb-8 text-lg">Start a quiz or explore exciting events curated just for you.</p>
+
+  <a href="{% url 'quiz_list' %}"
+     class="bg-yellow-300 text-indigo-900 px-12 py-4 text-xl rounded-xl font-bold shadow-xl hover:bg-yellow-400 transition">
+     Start Quiz Now
+  </a>
+</section>
+
+{% endblock %}
