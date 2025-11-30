@@ -26,8 +26,11 @@ class Question(models.Model):
     question_type = models.CharField(max_length=20, choices=QUESTION_TYPES, default='MCQ')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('quiz', 'text')
     def __str__(self):
         return f"{self.quiz.title} - {self.text[:50]}"
+
 
 
 class Answer(models.Model):

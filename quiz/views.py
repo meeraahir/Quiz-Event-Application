@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -33,9 +34,26 @@ class RegisterView(View):
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
-            if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
-                form.add_error(None, "User already exists with this username or email.")
+
+            username = username.strip() if username else ""
+            email = email.strip().lower() if email else ""
+
+            if not username:
+                form.add_error("username", "Username is required.")
                 return render(request, self.template_name, {"form": form})
+
+            if not email:
+                form.add_error("email", "Email is required.")
+                return render(request, self.template_name, {"form": form})
+
+            if User.objects.filter(username__iexact=username).exists():
+                form.add_error("username", "A user with this username already exists.")
+                return render(request, self.template_name, {"form": form})
+
+            if User.objects.filter(email__iexact=email).exists():
+                form.add_error("email", "A user with this email already exists.")
+                return render(request, self.template_name, {"form": form})
+
             User.objects.create_user(username=username, email=email, password=password)
             messages.success(request, "Account created successfully")
             return redirect("login")
@@ -60,6 +78,7 @@ class LogoutView(View):
         messages.success(request, "Logout Successful")
         return redirect("login")
 
+
 class QuizList(ListView, LoginRequiredMixin):
     model = Quiz
     template_name = 'quiz_list.html'
@@ -68,7 +87,7 @@ class QuizList(ListView, LoginRequiredMixin):
     login_url = '/login/'
 
     def get_queryset(self):
-        return Quiz.objects.annotate(num_questions=Count('questions'))
+        return Quiz.objects.annotate(num_questions=Count('questions')).filter(num_questions__gt=0)
 
 
 class QuizForm(forms.Form):
@@ -99,8 +118,13 @@ class QuizDetail(LoginRequiredMixin, FormView):
 
     def dispatch(self, request, *args, **kwargs):
         self.quiz = get_object_or_404(Quiz, pk=kwargs['pk'])
+
         if UserSubmission.objects.filter(quiz=self.quiz, user_name=request.user).exists():
             messages.warning(request, "You have already completed this quiz.")
+            return redirect("quiz_list")
+
+        if not self.quiz.questions.exists():
+            messages.error(request, "This quiz has no questions available.")
             return redirect("quiz_list")
 
         return super().dispatch(request, *args, **kwargs)
@@ -112,18 +136,64 @@ class QuizDetail(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         user = self.request.user
+
+        if UserSubmission.objects.filter(quiz=self.quiz, user_name=user).exists():
+            messages.warning(self.request, "You have already completed this quiz.")
+            return redirect("quiz_list")
+
+        if not self.quiz.questions.exists():
+            messages.error(self.request, "This quiz has no questions available.")
+            return redirect("quiz_list")
+
         submission = UserSubmission.objects.create(
             quiz=self.quiz,
             user_name=user,
             score=0
         )
         score = 0
+
         for question in self.quiz.questions.all():
             field = f"question_{question.id}"
             user_value = form.cleaned_data.get(field)
 
             if question.question_type == "MCQ":
-                selected_answer = Answer.objects.get(id=int(user_value))
+                if user_value is None:
+                    messages.error(self.request, f"Please answer question: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                user_value = str(user_value).strip() if user_value else ""
+
+                if user_value == '':
+                    messages.error(self.request, f"Please answer question: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                try:
+                    answer_id = int(user_value)
+                except (ValueError, TypeError):
+                    messages.error(self.request, f"Invalid answer format for question: {question.text[:50]}. Expected a numeric answer ID.")
+                    submission.delete()  # Clean up incomplete submission
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                if answer_id <= 0:
+                    messages.error(self.request, f"Answer ID must be a positive integer for question: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                try:
+                    selected_answer = Answer.objects.get(id=answer_id)
+                except Answer.DoesNotExist:
+                    messages.error(self.request,
+                                   f"Selected answer does not exist for question: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                if selected_answer.question != question:
+                    messages.error(self.request, f"Invalid answer selected. Answer does not belong to question: {question.text[:50]}...")
+                    submission.delete()  # Clean up incomplete submission
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
                 correct = selected_answer.is_correct
 
                 if correct:
@@ -135,10 +205,34 @@ class QuizDetail(LoginRequiredMixin, FormView):
                     is_correct=correct,
                 )
             else:
+                if not user_value:
+                    messages.error(self.request, f"Please provide an answer for: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                user_value = user_value.strip() if isinstance(user_value, str) else str(user_value)
+
+                if user_value == '':
+                    messages.error(self.request, f"Please provide an answer for: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                if len(user_value) > 1000:
+                    messages.error(self.request, f"Text answer is too long. Maximum 1000 characters allowed for question: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                if len(user_value) < 1:
+                    messages.error(self.request, f"Text answer cannot be empty for question: {question.text[:50]}...")
+                    submission.delete()
+                    return redirect("quiz_detail", pk=self.quiz.id)
+
+                placeholder_answer = question.answers.first()
+
                 UserAnswer.objects.create(
                     submission=submission,
                     question=question,
-                    answer=None,
+                    answer=placeholder_answer,
                     is_correct=False,
                 )
 
@@ -147,8 +241,13 @@ class QuizDetail(LoginRequiredMixin, FormView):
         return redirect("quiz_result", submission_id=submission.id)
 
 
+@login_required(login_url='/login/')
 def quiz_result(request, submission_id):
     submission = get_object_or_404(UserSubmission, id=submission_id)
+    if submission.user_name != request.user:
+        messages.error(request, "You do not have permission to view this quiz result.")
+        return redirect("quiz_list")
+
     return render(request, "quiz_result.html", {"submission": submission})
 
 

@@ -4,111 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Quiz & Events Portal{% endblock %}</title>
-
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700,900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
-
-<body class="bg-gray-50">
-
+<body class="bg-gray-50 min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="bg-white shadow fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-black border-b border-gray-900 fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
-
             <!-- Brand -->
-            <a href="{% url 'home' %}" class="text-xl font-bold text-indigo-600">
-                QuizEvents
+            <a href="{% url 'home' %}" class="flex items-center space-x-2 select-none">
+                <span class="text-2xl font-extrabold text-white tracking-wider">Quiz<span class="text-yellow-400">Events</span></span>
             </a>
-
-            <!-- Menu -->
-            <div class="hidden md:flex items-center gap-8 text-gray-700 font-medium text-base">
-
-                <a href="{% url 'home' %}" class="hover:text-indigo-600 relative group">
-                    Home
-                    <span class="absolute left-0 -bottom-1 w-0 group-hover:w-full h-0.5 bg-indigo-600 transition-all"></span>
-                </a>
-
-                <a href="{% url 'quiz_list' %}" class="hover:text-indigo-600 relative group">
-                    Quizzes
-                    <span class="absolute left-0 -bottom-1 w-0 group-hover:w-full h-0.5 bg-indigo-600 transition-all"></span>
-                </a>
-
-                <a href="{% url 'events' %}" class="hover:text-indigo-600 relative group">
-                    Events
-                    <span class="absolute left-0 -bottom-1 w-0 group-hover:w-full h-0.5 bg-indigo-600 transition-all"></span>
-                </a>
-
-                <!-- Right Side Buttons -->
+            <!-- Desktop menu -->
+            <div class="hidden md:flex gap-8 items-center text-base font-medium">
+                <a href="{% url 'home' %}" class="text-white hover:text-yellow-400 transition">Home</a>
+                <a href="{% url 'quiz_list' %}" class="text-white hover:text-yellow-400 transition">Quizzes</a>
+                <a href="{% url 'events' %}" class="text-white hover:text-yellow-400 transition">Events</a>
                 {% if user.is_authenticated %}
-
-                <a href="{% url 'logout' %}" class="hover:text-indigo-600 relative group">
-                    Logout
-                    <span class="absolute left-0 -bottom-1 w-0 group-hover:w-full h-0.5 bg-indigo-600 transition-all"></span>
-                </a>
-
+                <a href="{% url 'logout' %}" class="text-white hover:text-yellow-400 transition">Logout</a>
                 {% else %}
-                <a href="{% url 'login' %}" class="hover:text-indigo-600 relative group">
-                    Login
-                    <span class="absolute left-0 -bottom-1 w-0 group-hover:w-full h-0.5 bg-indigo-600 transition-all"></span>
-                </a>
-
-                <a href="{% url 'register' %}" class="hover:text-indigo-600 relative group">
-                    Register
-                    <span class="absolute left-0 -bottom-1 w-0 group-hover:w-full h-0.5 bg-indigo-600 transition-all"></span>
-                </a>
+                <a href="{% url 'login' %}" class="text-white hover:text-yellow-400 transition">Login</a>
+                <a href="{% url 'register' %}" class="text-white hover:text-yellow-400 transition">Register</a>
                 {% endif %}
-
             </div>
-
-            <!-- Mobile Button -->
-            <span id="menuBtn" class="md:hidden text-gray-600 text-xl cursor-pointer align-middle">☰</span>
+            <!-- Mobile hamburger -->
+            <button id="menuBtn" class="md:hidden text-2xl text-white hover:text-yellow-400 focus:outline-none transition p-1 rounded-lg border border-transparent hover:border-yellow-300">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
-
         <!-- Mobile Dropdown -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white shadow px-6 pb-4">
-
-            <a href="{% url 'home' %}" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
-            <a href="{% url 'quiz_list' %}" class="block py-2 text-gray-700 hover:text-indigo-600">Quizzes</a>
-            <a href="{% url 'events' %}" class="block py-2 text-gray-700 hover:text-indigo-600">Events</a>
-
-            <hr class="my-2">
-
+        <div id="mobileMenu" class="hidden md:hidden bg-black border-b border-gray-900 transition absolute w-full top-full left-0 px-6 pb-4 pt-2">
+            <a href="{% url 'home' %}" class="block py-2 text-white hover:text-yellow-400">Home</a>
+            <a href="{% url 'quiz_list' %}" class="block py-2 text-white hover:text-yellow-400">Quizzes</a>
+            <a href="{% url 'events' %}" class="block py-2 text-white hover:text-yellow-400">Events</a>
+            <hr class="my-2 border-gray-700">
             {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="block py-2 text-gray-700 hover:text-indigo-600">Logout</a>
+            <a href="{% url 'logout' %}" class="block py-2 text-white hover:text-yellow-400">Logout</a>
             {% else %}
-            <a href="{% url 'login' %}" class="block py-2 text-gray-700 hover:text-indigo-600">Login</a>
-            <a href="{% url 'register' %}" class="block py-2 text-gray-700 hover:text-indigo-600">Register</a>
+            <a href="{% url 'login' %}" class="block py-2 text-white hover:text-yellow-400">Login</a>
+            <a href="{% url 'register' %}" class="block py-2 text-white hover:text-yellow-400">Register</a>
             {% endif %}
-
         </div>
     </nav>
-
-    <!-- Page Content (Remove Gap Between Navbar & Hero) -->
-    <main class="pt-0 mt-0">
+    <!-- Main Content -->
+    <main class="flex-1">
         {% block content %}{% endblock %}
     </main>
-
     <!-- Footer -->
-    <footer class="bg-white shadow mt-20">
-        <div class="max-w-7xl mx-auto px-6 py-6 text-center text-gray-500">
-            © 2025 QuizEvents — All Rights Reserved.
+    <footer class="bg-white shadow-inner mt-20 text-sm">
+        <div class="max-w-7xl mx-auto px-6 py-7 flex flex-col md:flex-row items-center justify-between text-gray-500">
+            <div class="mb-2 md:mb-0">© 2025 <span class="font-semibold text-indigo-600">QuizEvents</span> — All Rights Reserved.</div>
+            <div class="flex gap-3">
+                <a href="#" class="hover:text-indigo-700">Privacy Policy</a>
+                <a href="#" class="hover:text-indigo-700">Terms of Service</a>
+            </div>
         </div>
     </footer>
-
     <script>
         const btn = document.getElementById("menuBtn");
         const menu = document.getElementById("mobileMenu");
-
         btn.addEventListener("click", () => {
             menu.classList.toggle("hidden");
         });
     </script>
-
 </body>
 </html>

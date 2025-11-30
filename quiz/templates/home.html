@@ -1,145 +1,111 @@
 {% extends 'index.html' %}
 {% block title %}Welcome | QuizEvents{% endblock %}
 {% block content %}
-
 <!-- HERO SECTION -->
-<section class="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white py-28 px-6">
-  <div class="max-w-6xl mx-auto text-center">
-
-    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-      Challenge Your Mind with
-      <span class="text-yellow-300 block">Quizzes & Events</span>
+<section class="relative bg-gradient-to-br from-blue-100 via-white to-blue-200 text-gray-900 min-h-screen flex items-center justify-center px-6 overflow-hidden">
+  <div class="w-full max-w-4xl mx-auto text-center relative z-10">
+    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-xl">
+      Challenge Your Mind <br/>
+      <span class="text-indigo-700">Quizzes & Events</span>
     </h1>
-
-    <p class="text-lg opacity-95 mb-10 max-w-2xl mx-auto">
-      Join interactive quizzes, explore latest events, compete with friends, and level up your knowledge — all in one platform.
+    <p class="text-lg md:text-xl opacity-90 mb-10 max-w-2xl mx-auto font-medium">
+      Interactive quizzes, trending events, and a thriving community all in one modern platform.
     </p>
-
-    <!-- ACTION BUTTONS -->
-    <div class="flex justify-center flex-wrap gap-4">
-
-      <!-- Explore Quizzes -->
-      <a href="{% url 'quiz_list' %}"
-         class="bg-yellow-300 text-indigo-800 px-10 py-3 text-lg font-bold rounded-xl shadow-lg hover:bg-yellow-400 transition">
-        Explore Quizzes
-      </a>
-
-      <!-- See Events -->
-      <a href="{% url 'events' %}"
-         class="bg-white text-purple-700 px-10 py-3 text-lg font-bold rounded-xl shadow-lg hover:bg-gray-100 transition">
-        See Events
-      </a>
-
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="{% url 'quiz_list' %}" class="bg-indigo-700 text-white px-10 py-3 text-lg font-bold rounded-2xl shadow-xl hover:bg-indigo-800 transition">Explore Quizzes</a>
+      <a href="{% url 'events' %}" class="bg-white text-indigo-700 border border-indigo-200 px-10 py-3 text-lg font-bold rounded-2xl shadow-lg hover:bg-indigo-50 transition">See Events</a>
     </div>
   </div>
-  <!-- Bottom Fade -->
   <div class="absolute left-0 right-0 bottom-0 h-16 bg-gradient-to-t from-white/90 to-transparent"></div>
+  <div class="absolute top-0 left-0 w-24 h-24 bg-blue-100 opacity-30 rounded-full blur-2xl" style="z-index:1"></div>
+  <div class="absolute right-0 bottom-0 w-32 h-32 bg-blue-200 opacity-30 rounded-full blur-2xl" style="z-index:1"></div>
 </section>
-
-
 
 <!-- STATS SECTION -->
 <section class="py-20 bg-white">
-  <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
     <div>
-      <h3 class="text-4xl font-extrabold text-indigo-600">12K+</h3>
+      <h3 class="text-4xl font-extrabold text-indigo-600 mb-1">12K+</h3>
       <p class="text-gray-600 font-medium">Active Users</p>
     </div>
     <div>
-      <h3 class="text-4xl font-extrabold text-purple-600">350+</h3>
+      <h3 class="text-4xl font-extrabold text-purple-600 mb-1">350+</h3>
       <p class="text-gray-600 font-medium">Quizzes</p>
     </div>
     <div>
-      <h3 class="text-4xl font-extrabold text-pink-600">120+</h3>
+      <h3 class="text-4xl font-extrabold text-pink-600 mb-1">120+</h3>
       <p class="text-gray-600 font-medium">Events Hosted</p>
     </div>
     <div>
-      <h3 class="text-4xl font-extrabold text-green-600">4.9★</h3>
+      <h3 class="text-4xl font-extrabold text-green-600 mb-1">4.9★</h3>
       <p class="text-gray-600 font-medium">User Rating</p>
     </div>
   </div>
 </section>
 
-
-
 <!-- FEATURES SECTION -->
 <section class="py-20 bg-gray-50">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-14">
-      Why Choose <span class="text-indigo-600">QuizEvents?</span>
+      Why Choose <span class="text-indigo-700">QuizEvents?</span>
     </h2>
-
     <div class="grid md:grid-cols-3 gap-10">
-
-      <div class="bg-white p-10 shadow-lg rounded-2xl hover:shadow-2xl transition text-center">
-        <div class="bg-indigo-600 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6">
-          <i class="fa-solid fa-brain text-3xl"></i>
+      <div class="bg-white p-10 shadow-2xl rounded-2xl hover:scale-105 hover:shadow-indigo-200 transition transform text-center border-t-4 border-indigo-500">
+        <div class="bg-indigo-600 text-white w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-7 border-4 border-indigo-200">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20v-6M12 14a4 4 0 00-4-4V8a4 4 0 118 0v2a4 4 0 00-4 4"></path>
+          </svg>
         </div>
         <h3 class="text-xl font-bold mb-2">Interactive Quizzes</h3>
-        <p class="text-gray-600">MCQs, instant results & real-time leaderboards.</p>
+        <p class="text-gray-600">Instant MCQ results, adaptive levels & real-time leaderboards.</p>
       </div>
-
-      <div class="bg-white p-10 shadow-lg rounded-2xl hover:shadow-2xl transition text-center">
-        <div class="bg-purple-600 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6">
-          <i class="fa-solid fa-calendar-check text-3xl"></i>
+      <div class="bg-white p-10 shadow-2xl rounded-2xl hover:scale-105 hover:shadow-purple-200 transition transform text-center border-t-4 border-purple-500">
+        <div class="bg-purple-600 text-white w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-7 border-4 border-purple-200">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 7V3M16 7V3M4 11h16M21 21H3V11a1 1 0 011-1h16a1 1 0 011 1v10z"></path>
+          </svg>
         </div>
         <h3 class="text-xl font-bold mb-2">Latest Events</h3>
-        <p class="text-gray-600">Workshops, competitions & seminars.</p>
+        <p class="text-gray-600">Workshops, hackathons & community competitions.</p>
       </div>
-
-      <div class="bg-white p-10 shadow-lg rounded-2xl hover:shadow-2xl transition text-center">
-        <div class="bg-green-600 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6">
-          <i class="fa-solid fa-chart-line text-3xl"></i>
+      <div class="bg-white p-10 shadow-2xl rounded-2xl hover:scale-105 hover:shadow-green-200 transition transform text-center border-t-4 border-green-500">
+        <div class="bg-green-600 text-white w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-7 border-4 border-green-200">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 9V7a5 5 0 00-10 0v2a5 5 0 0010 0zM3 20a5 5 0 0110 0M21 20a5 5 0 00-10 0"></path>
+          </svg>
         </div>
         <h3 class="text-xl font-bold mb-2">Instant Results</h3>
-        <p class="text-gray-600">Instant scoring & performance tracking.</p>
+        <p class="text-gray-600">Instant scoring & advanced performance tracking.</p>
       </div>
-
     </div>
   </div>
 </section>
-
-
-
 <!-- HOW IT WORKS -->
 <section class="py-20 bg-white">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-14">
       How It <span class="text-purple-600">Works</span>
     </h2>
-
     <div class="grid md:grid-cols-3 gap-10 text-center">
-
-      <div>
+      <div class="bg-gray-50 px-8 py-10 rounded-2xl shadow-md border-b-4 border-indigo-100">
         <h3 class="text-2xl font-bold text-indigo-600 mb-2">1. Sign Up</h3>
-        <p class="text-gray-600">Create an account and start exploring.</p>
+        <p class="text-gray-600">Create an account and start exploring quizzes and events instantly.</p>
       </div>
-
-      <div>
+      <div class="bg-gray-50 px-8 py-10 rounded-2xl shadow-md border-b-4 border-purple-100">
         <h3 class="text-2xl font-bold text-purple-600 mb-2">2. Join Quizzes</h3>
-        <p class="text-gray-600">Choose quizzes or events you like.</p>
+        <p class="text-gray-600">Handpick your quizzes or events and join with a click.</p>
       </div>
-
-      <div>
+      <div class="bg-gray-50 px-8 py-10 rounded-2xl shadow-md border-b-4 border-pink-100">
         <h3 class="text-2xl font-bold text-pink-600 mb-2">3. Compete & Grow</h3>
-        <p class="text-gray-600">Track performance & improve daily.</p>
+        <p class="text-gray-600">Track your performance, compete on rankings, and grow every day!</p>
       </div>
-
     </div>
   </div>
 </section>
-
-
-
-<!-- FOOTER CTA -->
-<section class="py-20 bg-gradient-to-br from-indigo-600 to-purple-700 text-white text-center">
-  <h2 class="text-4xl font-extrabold mb-4">Ready to Begin Your Journey?</h2>
-  <p class="text-white/90 mb-8 text-lg">Start a quiz or explore exciting events curated just for you.</p>
-
-  <a href="{% url 'quiz_list' %}"
-     class="bg-yellow-300 text-indigo-900 px-12 py-4 text-xl rounded-xl font-bold shadow-xl hover:bg-yellow-400 transition">
-     Start Quiz Now
-  </a>
+<!-- CTA FOOTER -->
+<section class="py-20 bg-gradient-to-br from-indigo-700 to-purple-700 text-white text-center">
+  <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Ready to Begin Your Journey?</h2>
+  <p class="text-white/90 mb-10 text-lg font-medium">Start a quiz or explore exciting events curated just for you.</p>
+  <a href="{% url 'quiz_list' %}" class="bg-yellow-300 text-indigo-900 px-14 py-5 text-2xl rounded-2xl font-bold shadow-2xl hover:bg-yellow-400 transition">Start Quiz Now</a>
 </section>
-
 {% endblock %}

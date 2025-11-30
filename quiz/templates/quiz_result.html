@@ -1,16 +1,59 @@
 {% extends 'index.html' %}
+{% block title %}Quiz Results | QuizEvents{% endblock %}
 {% block content %}
 
-<div class="max-w-2xl mx-auto py-12">
-    <h1 class="text-3xl font-bold text-green-600 mb-4">Quiz Completed!</h1>
+<section class="min-h-screen py-20 bg-gray-50 flex items-center justify-center">
+    <div class="max-w-2xl mx-auto px-4 w-full">
+        <!-- Success Card -->
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+            <!-- Header with Gradient -->
+            <div class="bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-8 text-center">
+                <div class="flex justify-center mb-3">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-2 drop-shadow-lg">Quiz Completed!</h1>
+                <p class="text-green-100 text-base font-medium">Great job on finishing the quiz</p>
+            </div>
 
-    <p class="text-lg mb-4">Your Score:
-        <span class="font-bold">{{ submission.score }}</span>
-        / {{ submission.quiz.questions.count }}
-    </p>
+            <!-- Score Section -->
+            <div class="px-8 py-8 text-center">
+                <div class="mb-6">
+                    <p class="text-gray-600 text-base mb-3 font-medium">Your Score</p>
+                    <div class="inline-flex items-baseline justify-center space-x-2">
+                        <span class="text-5xl md:text-6xl font-extrabold text-indigo-700">{{ submission.score }}</span>
+                        <span class="text-2xl md:text-3xl font-bold text-gray-400">/</span>
+                        <span class="text-3xl md:text-4xl font-bold text-gray-600">{{ submission.quiz.questions.count }}</span>
+                    </div>
+                </div>
 
-    <a href="{% url 'quiz_list' %}"
-       class="bg-indigo-600 text-white px-4 py-2 rounded">Back to Quizzes</a>
-</div>
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 h-4 rounded-full transition-all duration-500" 
+                             style="width: {% widthratio submission.score submission.quiz.questions.count 100 %}%"></div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2 font-medium">
+                        {% widthratio submission.score submission.quiz.questions.count 100 %}% Correct
+                    </p>
+                </div>
+
+                <!-- Action Button -->
+                <div class="pt-4">
+                    <a href="{% url 'quiz_list' %}" 
+                       class="inline-flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Back to Quizzes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
